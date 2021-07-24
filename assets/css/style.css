@@ -63,9 +63,20 @@ textarea{
   border-bottom-right-radius: 15px;
   background-color: #06AED5;
   color: white;
+  padding-bottom: 10px;
 }
 
 .saveBtn i:hover {
   font-size: 20px;
   transition: all .3s ease-in-out;
 }
+
+.list-group-item {
+  padding: 0;
+  border-right: none;
+  
+  border-left: none;
+  border-bottom: 2px solid white;
+  
+}
+
