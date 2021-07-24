@@ -80,3 +80,6 @@ textarea{
   
 }
 
+.list-group-item .event {
+  padding-top: 10px;
+}
