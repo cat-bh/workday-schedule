@@ -1,5 +1,5 @@
 // Show today's date at top of page
-var currentDay = moment().format("dddd MMMM Mo");
+var currentDay = moment().format("dddd MMMM Do");
 
 $("#currentDay").text(currentDay);
 
@@ -26,11 +26,11 @@ var updateTime = function() {
         eventTime = parseInt(eventTime);
 
         if (currentHour === eventTime) {
-            $(this).find(".event").addClass("present");
+            $(this).find(".event").removeClass("future").addClass("present");
         } else if (currentHour < eventTime) {
             $(this).find(".event").addClass("future");
         } else {
-            $(this).find(".event").addClass("past");
+            $(this).find(".event").removeClass("present").addClass("past");
         }
     });
 };
@@ -70,13 +70,15 @@ $(".list-group").on("blur", "textarea", function() {
     
 });
 
+// Get events from local storage
 var loadEvents = function() {
     var tempObj = JSON.parse(localStorage.getItem("todaysEvents"));
 
     if (!tempObj) {
         return
     }
-       
+    
+    // Check if they are events from today
     if (tempObj.today === currentDay) {
         // load events
         $(".list-group-item").each(function() {
@@ -88,6 +90,7 @@ var loadEvents = function() {
 
     } else {
         // delete events from yesterday and set as empty
+        localStorage.setItem("todaysEvents", null);
     }
     
 };
